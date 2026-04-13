@@ -22,7 +22,7 @@ impl Web2WaveApi {
         }
     }
 
-    pub async fn create_invoce(
+    pub async fn create_invoice(
         &self,
         req: &CreateInvoiceRequest,
     ) -> Result<CreateInvoiceResponse, String> {

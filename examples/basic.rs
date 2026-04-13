@@ -8,7 +8,7 @@ async fn main() {
     let api = Web2WaveApi::new(base_url, api_key, Duration::from_secs(15));
 
     let result = api
-        .create_invoce(&CreateInvoiceRequest {
+        .create_invoice(&CreateInvoiceRequest {
             subscription_id: 1,
             amount: 10.0,
             invoice_id: None,
