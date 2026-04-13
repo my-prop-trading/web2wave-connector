@@ -1,4 +1,7 @@
-use crate::model::{CreateInvoiceRequest, CreateInvoiceResponse};
+use crate::model::{
+    CreateInvoiceRequest, CreateInvoiceResponse, UpdateSubscriptionRequest,
+    UpdateSubscriptionResponse,
+};
 use flurl::{hyper::Method, FlUrl};
 use serde::{de::DeserializeOwned, Serialize};
 use std::fmt::Debug;
@@ -26,6 +29,16 @@ impl Web2WaveApi {
         let endpoint = "/api/subscription/invoice";
         let method = Method::POST;
         self.send_flurl_deserialized(endpoint, &method, req).await
+    }
+
+    pub async fn update_subscription(
+        &self,
+        subscription_id: i32,
+        req: &UpdateSubscriptionRequest,
+    ) -> Result<UpdateSubscriptionResponse, String> {
+        let endpoint = format!("api/subscription/{subscription_id}");
+        let method = Method::PUT;
+        self.send_flurl_deserialized(&endpoint, &method, req).await
     }
 
     async fn send_flurl_deserialized<R: Serialize + Debug, T: DeserializeOwned + Debug>(
